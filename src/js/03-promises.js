@@ -7,11 +7,11 @@ const refs = {
   amount: document.querySelector('[name="amount"]'),
 }
 
-refs.form.addEventListener('click', onPromiceCreate);
+refs.form.addEventListener('submit', onPromiceCreate);
 
 
 function createPromise(position, delay) {
-  return new Promise((position, reject) => {
+  return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
     setTimeout(() => {
       if (shouldResolve) {
@@ -34,14 +34,15 @@ function onPromiceCreate(evt) {
   let valueAmount = Number(refs.amount.value);
 
   for (let i = 1; i <= valueAmount; i += 1) {
-    let promoceDelay = valueDelay + valueStep * i;
-  }
+    let promiceDelay = valueDelay + valueStep * i;
+  
 
-createPromise(2, 1500)
-  .then(({ position, delay }) => {
-    Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  })
-  .catch(({ position, delay }) => {
-    Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-  });
+    createPromise(2, 1500)
+      .then(({ position, delay }) => {
+        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      })
+      .catch(({ position, delay }) => {
+        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+      });
+  }
 }
