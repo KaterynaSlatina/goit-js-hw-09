@@ -40,7 +40,7 @@ const options = {
 const pickr = flatpickr(refs.input, options);
 
 function addLeadingZero(value) {
-    return value.toStrind.padStart(2, "0");
+    return value.toString().padStart(2, "0");
 }
 
 function onStartBtn() {    
@@ -48,11 +48,11 @@ function onStartBtn() {
         const selectedTime = pickr.selectedDates[0];
     
     if (selectedTime >= 0) {
-        let timeConvertor = convertMs(timerId);
-        refs.days.textContent = addLeadingZero.days;
-        refs.hours.textContent = addLeadingZero.hours;
-        refs.minutes.textContent = addLeadingZero.minutes;
-        refs.seconds.textContent = addLeadingZero.seconds;
+        let timeConvertor = convertMs(selectedTime);
+        refs.days.textContent = timeConvertor.days;
+        refs.hours.textContent = timeConvertor.hours;
+        refs.minutes.textContent = timeConvertor.minutes;
+        refs.seconds.textContent = timeConvertor.seconds;
     } else {
     clearInterval(intervalId);
 }

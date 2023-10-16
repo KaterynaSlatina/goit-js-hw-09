@@ -19,7 +19,8 @@ document.body.style.backgroundColor = getRandomHexColor();
 }
 
 function stopChangingColor() {
-startButton.disabled = false; 
+    startButton.disabled = false; 
+    stopButton.disabled = true;
 clearInterval(intervalId);
 }
 

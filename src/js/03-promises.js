@@ -34,10 +34,11 @@ function onPromiceCreate(evt) {
   let valueAmount = Number(refs.amount.value);
 
   for (let i = 1; i <= valueAmount; i += 1) {
+    let position = i + 1;
     let promiceDelay = valueDelay + valueStep * i;
   
 
-    createPromise(2, 1500)
+    createPromise(position, delay)
       .then(({ position, delay }) => {
         console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
