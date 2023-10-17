@@ -25,7 +25,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
       // console.log(selectedDates[0]);
-      const currentDay = new Date();
+      const currentDay = Date.now();
       if (selectedDates[0] < currentDay) {
           Notiflix.Report.failure('Warning!', 'Please, choose future date', 'OK');
           refs.btn.disabled = true;
@@ -40,15 +40,19 @@ const options = {
 const pickr = flatpickr(refs.input, options);
 
 function addLeadingZero(value) {
-    return value.toString().padStart(2, "0");
+    return value.toString().padStart(2, '0');
 }
 
 function onStartBtn() {    
-    const timerId = setInterval(() => {
+    const interval = setInterval(() => {
         const selectedTime = pickr.selectedDates[0];
     
-    if (selectedTime >= 0) {
-        let timeConvertor = convertMs(selectedTime);
+        const currentDate = new Date();
+        const timerId = selectedTime - currentDate;
+
+
+    if (timerId >= 0) {
+        let timeConvertor = convertMs(timerId);
         refs.days.textContent = timeConvertor.days;
         refs.hours.textContent = timeConvertor.hours;
         refs.minutes.textContent = timeConvertor.minutes;

@@ -38,7 +38,7 @@ function onPromiceCreate(evt) {
     let promiceDelay = valueDelay + valueStep * i;
   
 
-    createPromise(position, delay)
+    createPromise(position, promiceDelay)
       .then(({ position, delay }) => {
         console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
